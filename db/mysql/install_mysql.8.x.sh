@@ -62,4 +62,4 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 debconf-set-selections <<< "mysql-server mysql-server/default-auth-override select Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)"
 DEBIAN_FRONTEND=noninteractive  apt-get -y install mysql-server
 
-echo PURGE | sudo debconf-communicate mysql-server
+echo PURGE | debconf-communicate mysql-server
