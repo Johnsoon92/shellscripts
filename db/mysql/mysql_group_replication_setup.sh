@@ -1,5 +1,5 @@
 #!/bin/bash
-cat <<EOF > /etc/mysq/mysql.conf.d/group-replication.conf
+cat <<EOF > /etc/mysql/mysql.conf.d/group-replication.conf
 [mysqld]
 #====== Storage Engines Settings ======#
 # 组复制只能用innoDB, 为避免误用, 把其它存储引擎禁掉
