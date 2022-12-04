@@ -1,5 +1,5 @@
 #!/bin/bash
-cat <<EOF > /etc/mysql/mysql.conf.d/group-replication.conf
+cat <<EOF > /etc/mysql/mysql.conf.d/group-replication.cnf
 [mysqld]
 #====== Storage Engines Settings ======#
 # 组复制只能用innoDB, 为避免误用, 把其它存储引擎禁掉
@@ -60,6 +60,8 @@ group_replication_enforce_update_everywhere_checks=OFF
 group_replication_consistency=BEFORE_ON_PRIMARY_FAILOVER 
 EOF
 
+systemctl restart mysql
+
 mysql -e "\
 SET SQL_LOG_BIN=0;\
 CREATE USER rpl_user@'%' IDENTIFIED BY '123456';\
@@ -70,3 +72,5 @@ GRANT GROUP_REPLICATION_STREAM ON *.* TO rpl_user@'%';\
 FLUSH PRIVILEGES;\
 SET SQL_LOG_BIN=1;\
 "
+
+mysql -e "CHANGE REPLICATION SOURCE TO SOURCE_USER='rpl_user', SOURCE_PASSWORD='123456' FOR CHANNEL 'group_replication_recovery'"
