@@ -10,15 +10,11 @@ server_id=1
 gtid_mode=ON
 enforce_gtid_consistency=ON
 
-# TODO
-master_info_repository=TABLE
-relay_log_info_repository=TABLE
-
 # MySQL 8.0.20 之前不支持binlog_chekcsum, 需要关掉
 binlog_checksum=NONE
 
 # Replica 也记 binlog, 可以实现 A->B->C 这样的复制链
-log_slave_updates=ON
+log_replica_updates=ON
 log_bin=binlog
 binlog_format=row
 
@@ -26,16 +22,13 @@ binlog_format=row
 # TODO
 plugin_load_add='group_replication.so'
 
-# TODO
-transaction_write_set_extraction=XXHASH64
-
 # use SELECT UUID() to generate a UUID
 group_replication_group_name="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
 
 # Group Replication internal communication address
 group_replication_local_address= "192.168.3.4:33061"
 
-hostname="192.168.13.4"
+report_host="192.168.13.4"
 
 # all Group Replication member's address
 group_replication_group_seeds= "192.168.3.3:33061,192.168.3.4:33061,192.168.3.6:33061"
