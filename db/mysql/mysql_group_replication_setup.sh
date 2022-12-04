@@ -64,7 +64,7 @@ systemctl restart mysql
 
 mysql -e "\
 SET SQL_LOG_BIN=0;\
-CREATE USER rpl_user@'%' IDENTIFIED BY '123456';\
+CREATE USER IF NOT EXISTS rpl_user@'%' IDENTIFIED BY '123456';\
 GRANT REPLICATION SLAVE ON *.* TO rpl_user@'%';\
 GRANT CONNECTION_ADMIN ON *.* TO rpl_user@'%';\
 GRANT BACKUP_ADMIN ON *.* TO rpl_user@'%';\
