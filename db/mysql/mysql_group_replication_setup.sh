@@ -35,6 +35,8 @@ group_replication_group_name="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
 # Group Replication internal communication address
 group_replication_local_address= "192.168.3.4:33061"
 
+hostname="192.168.13.4"
+
 # all Group Replication member's address
 group_replication_group_seeds= "192.168.3.3:33061,192.168.3.4:33061,192.168.3.6:33061"
 
